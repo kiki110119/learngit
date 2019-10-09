@@ -907,35 +907,7 @@ def get_Topology_Info():
 
     # wb.close()
 
-def getpinnumio():
 
-    global pin_number_in_out_dict, mapped_model_name_list
-    pin_number_in_out_dict = dict()
-    mapped_model_name_list = list()
-
-    # General Pin in-out mapping: 2-pin component, MOS, BJT
-    pin_number_in_out_dict[('1', ('1', '2'))] = ['2'] # RES or CAP
-    pin_number_in_out_dict[('2', ('1', '2'))] = ['1'] # RES or CAP
-
-    # Update "pin_number_in_out_dict" from the "pin_mapping_library.csv"
-    # 应该能改进代码
-    library_path = os.path.join(os.path.dirname('C:\\work space\\check_net\\HP-ID19_Edinburgh CFL_SIM_Routing_Guideline-A1.1_20181108.xlsx'), 'dist', 'pin_mapping_library.csv')
-    # print(library_path)
-    data = open(library_path, 'r').read().split('\n')[1::]
-    # print(data)
-    data = [x for x in data if x != '']
-    data = list(map(lambda x: x.split(','), data))
-    # print (data)
-
-    for line in data:
-        key = (line[0], line[1])
-        value = line[2]
-        pin_number_in_out_dict[key] = value.split(';')
-        mapped_model_name_list.append(line[0])
-    print(pin_number_in_out_dict)
-    mapped_model_name_list = list(set(mapped_model_name_list))
-    print('**************************************************')
-    print(mapped_model_name_list)
 
 # managet_diff_data()
 if __name__ == '__main__':
